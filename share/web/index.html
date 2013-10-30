@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>QPM tools</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link href="css/qpm.css" rel="stylesheet">
+    <script>
+      jQuery.event.props.push('dataTransfer');
+      $(function(){
+        $('.drop_wrap.images').on('drop',function(e){
+          e.stopPropagation();
+          e.preventDefault();
+
+          var files = e.dataTransfer.files;
+          var fr = new FileReader();
+          var target = e.delegateTarget;
+          file = files[0] ? files[0] : null;
+
+          if (file.type.match('image.*')) {
+              fr.onload = function(e) {
+                $(target).addClass('preview');
+                $('img', target).attr('src',e.target.result);
+              };
+              fr.readAsDataURL(file);               
+          }
+        });
+        $('.drop_wrap.files').on('drop',function(e){
+          e.stopPropagation();
+          e.preventDefault();
+
+          var files = e.dataTransfer.files;
+          var target = e.delegateTarget;
+          file = files[0] ? files[0] : null;
+
+          $(target).addClass('preview');
+          $('.filename', target).text(file.name+' ('+file.type+')');
+          $('.size', target).text(file.size+' bytes');
+        });
+        $('.drop_wrap').on('dragover',function(e){
+          e.stopPropagation();
+          e.preventDefault();
+        });
+
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="#">Build</a></li>
+          <li><a href="#">List</a></li>
+          <li><a href="#">QNAP</a></li>
+        </ul>
+        <h3 class="text-muted">QPM</h3>
+      </div>
+
+      <div class="jumbotron">
+        <form role="form">
+          <div class="form-group">
+            <label for="exampleInputEmail1">QPKG Name</label>
+            <input type="text" class="form-control" placeholder="QPKG Name" value="image2pdf">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">QPKG Display Name</label>
+            <input type="text" class="form-control" placeholder="QPKG Display Name" value="Image To PDF">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputFile">LICENSE</label>
+            <input type="text" class="form-control" placeholder="LICENSE" value="GPLv3">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputFile">VERSION</label>
+            <input type="text" class="form-control" placeholder="VERSION" value="0.2.1">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputFile">ICON</label>
+            <div>
+              <div class="drop_wrap images">
+                <div class="drop_file">
+                  Drop files here
+                </div>
+                <img class="drop_info"/>
+              </div>
+              <div class="drop_wrap images">
+                <div class="drop_file">
+                  Drop files here
+                </div>
+                <img class="drop_info"/>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputFile">Web interface</label>
+            <div class="drop_wrap files">
+              <div class="drop_file">
+                Drop files here
+              </div>
+              <div class="drop_info">
+                <p>filename&#58;&nbsp;<span class="filename"></span></p>
+                <p>size&#58;&nbsp;<span class="size"></span></p>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputFile">Executable binary</label>
+            <div class="drop_wrap files">
+              <div class="drop_file">
+                Drop files here
+              </div>
+              <div class="drop_info">
+                <p>filename&#58;&nbsp;<span class="filename"></span></p>
+                <p>size&#58;&nbsp;<span class="size"></span></p>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="checkbox-inline">
+              <input type="checkbox" value="option1"> background service
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="option2"> mysql initialization
+            </label>
+          </div>
+        </form>
+        <p><a class="btn btn-lg btn-success" href="./download.php">Build a QPKG</a></p>
+      </div>
+
+      <div class="footer">
+        <p>&copy; Company 2013</p>
+      </div>
+
+    </div>
+  </body>
+</html>
