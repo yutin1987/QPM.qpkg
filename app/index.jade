@@ -1,0 +1,86 @@
+!!! 5
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    title QPM tools
+    meta(name='description', cossntent='')
+    meta(name='viewport', content='width=device-width')
+    //if lt IE 9
+      script(src='bower_components/es5-shim/es5-shim.js')
+      script(src='bower_components/json3/lib/json3.min.js')
+    link(href='styles/bootstrap.min.css', rel='stylesheet')
+    script(src="bower_components/jquery/jquery.min.js")
+    script(src="bower_components/angular/angular.min.js")
+    link(href='css/qpm.css', rel='stylesheet')
+  body
+    .container
+      .header
+        ul.nav.nav-pills.pull-right
+          li.active
+            a(href='#') Build
+          li
+            a(href='#') List
+          li
+            a(href='#') QNAP
+        h3.text-muted QPM
+      .jumbotron
+        form(role='form')
+          .form-group
+            label(for='exampleInputEmail1') QPKG Name
+            input.form-control(type='text', placeholder='QPKG Name', value='image2pdf')
+          .form-group
+            label(for='exampleInputPassword1') QPKG Display Name
+            input.form-control(type='text', placeholder='QPKG Display Name', value='Image To PDF')
+          .form-group
+            label(for='exampleInputFile') LICENSE
+            input.form-control(type='text', placeholder='LICENSE', value='GPLv3')
+          .form-group
+            label(for='exampleInputFile') VERSION
+            input.form-control(type='text', placeholder='VERSION', value='0.2.1')
+          .form-group
+            label(for='exampleInputFile') ICON
+            div
+              .drop_wrap.images
+                .drop_file
+                  | Drop files here
+                img.drop_info
+              .drop_wrap.images
+                .drop_file
+                  | Drop files here
+                img.drop_info
+          .form-group
+            label(for='exampleInputFile') Web interface
+            .drop_wrap.files
+              .drop_file
+                | Drop files here
+              .drop_info
+                p
+                  | filename&colon;
+                  span.filename
+                p
+                  | size&colon;
+                  span.size
+          .form-group
+            label(for='exampleInputFile') Executable binary
+            .drop_wrap.files
+              .drop_file
+                | Drop files here
+              .drop_info
+                p
+                  | filename&colon;
+                  span.filename
+                p
+                  | size&colon;
+                  span.size
+          .form-group
+            label.checkbox-inline
+              input(type='checkbox', value='option1')
+              | background service
+            label.checkbox-inline
+              input(type='checkbox', value='option2')
+              | mysql initialization
+        p
+          a.btn.btn-lg.btn-success(href='./download.php') Build a QPKG
+      .footer
+        p &copy; Company 2013
