@@ -2,6 +2,9 @@
 case "$1" in
   start)
     : ADD START ACTIONS HERE
+    chmod 777 $SYS_QPKG_DIR/web
+    chmod 777 $SYS_QPKG_DIR/qpkg
+    chmod 777 $SYS_QPKG_DIR/bin
     ;;
 
   stop)
